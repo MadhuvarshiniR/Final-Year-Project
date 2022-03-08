@@ -1,0 +1,46 @@
+<!Doctype html>
+
+<head>
+    <title>GAIN CREDIT RETROBOARDS</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    {% for feedback in feedbacks %}
+    <div>
+        <h3>{{feedback}} </h3>
+    </div>
+    {% endfor %}
+
+    <div>
+        
+        <input type="number" placeholder="type" name="type" id="type" required /></br>
+        <input type="text" placeholder="feedback" name="feedback" id="Feedback" required></br>
+        <button name="submit" id="submit" onclick="new_feedback()">submit</button>
+    </div>
+
+</body>
+
+
+<script>
+
+    function new_feedback() {
+        let Data = {
+            "type": document.getElementById("type").value,
+            "feedback": document.getElementById("Feedback").value
+        }
+
+        $.ajax({
+         url: window.location.href + '/add_new_feedback',
+         method: "POST",
+         data: Data
+       });
+    }
+
+    function update(element)
+    {
+        console.log(element.value)
+    }
+
+
+</script>

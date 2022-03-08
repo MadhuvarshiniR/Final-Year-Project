@@ -1,0 +1,128 @@
+<style>
+
+.alignleft {
+  font-size: 20px;
+  margin-top: 10px;
+  float: left;
+  width:33.33333%;
+  text-align:left;
+}
+.aligncenter {
+  font-size: 20px;
+  margin-top: 10px;
+  float: left;
+  width:33.33333%;
+  text-align:center;
+}
+.alignright {
+  font-size: 15px;
+  margin-top: 10px;
+  float: left;
+  width:16.6665%;
+  text-align:right;
+}​
+
+#textbox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.l1{
+  margin-left: 15px;
+  float:left;
+  width:60%;
+}
+.find {
+  float:left;
+  width: 100px;
+  height:30px;
+  margin-left: -120px;
+  margin-top:-5px;
+  border:1px solid black;
+  text-align: justify;
+}
+.sort{
+  float:left;
+
+}
+.dropbtn {
+background-color: blue;
+color: white;
+padding: 10px;
+font-size: 10px;
+border: none;
+margin-left: 15px;
+width:80px;
+height:30px;
+text-align: left;
+font-size: 13px;
+}
+.dropdown {
+position: relative;
+display: inline-block;
+float:left;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: blue;}
+
+.fa-mail-forward {
+float:left;
+width: 100px;
+height:30px;
+margin-left: -120px;
+margin-top:-5px;
+border:1px solid black;
+text-align: left;
+font-size: 18px;
+}
+.material-icons{
+margin-left: 20px;
+color:gray;
+}
+.td1:after {
+content: '\2807';
+font-size: 20px;
+margin-left: 15px;
+}
+.td:after{
+content: '\2807';
+font-size: 20px;
+}
+.column {
+
+float: left;
+width: 33.33%;
+height: 50px;
+column-gap:30px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+.new {
+column-count: 3;
+column-gap: 40px;
+}
+</style>
