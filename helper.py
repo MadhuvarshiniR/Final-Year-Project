@@ -1,4 +1,24 @@
-from tkinter import *
+import os
+import shutil
+
+letters = os.listdir(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train')
+print(os.getcwd(),letters)
+
+for letter in letters:
+    path= r'C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\ASL\train'
+    test_path = r'C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\ASL\test'
+    os.mkdir(path+"\\"+letter)
+    os.mkdir(test_path+"\\"+letter)
+    for i in range(0, 301):
+        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\"+
+                    str(i)+".jpg", path+"\\"+letter+"\\"+str(i)+".jpg")
+    for i in range(0, 40):
+        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\"+
+                    str(i)+".jpg", test_path+"\\"+letter+"\\"+str(i)+".jpg")
+
+
+"""
+'''from tkinter import *
 from functools import partial
 import os
 import cv2
@@ -59,4 +79,5 @@ while(True):
     k = cv2.waitKey(1) & 0xFF
     if k == 27:
         break
-cv2.destroyAllWindows()
+cv2.destroyAllWindows()'''
+"""

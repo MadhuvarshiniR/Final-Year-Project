@@ -1,4 +1,5 @@
 import os
+from django import conf
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import Sequential
@@ -15,10 +16,12 @@ import cv2
 from keras.callbacks import ReduceLROnPlateau
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 warnings.simplefilter(action='ignore', category=FutureWarning)
+import config
 
 
-train_path = r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train'
-test_path = r'C:\Users\muhym\Desktop\ASL\asl_alphabet_test\asl_alphabet_test'
+MODEL = "CUSTOM_DATA"
+train_path = config.MODEL_CONFIGS[MODEL][1]
+test_path = config.MODEL_CONFIGS[MODEL][2]
 
 classes = len(next(os.walk(train_path))[1])
 
@@ -78,4 +81,4 @@ imgs, labels = next(train_batches)  # For getting next batch of imgs...
 imgs, labels = next(test_batches)  # For getting next batch of imgs...
 scores = model.evaluate(imgs, labels, verbose=0)
 
-model.save('ASL_model.h5')
+model.save(config.MODEL_CONFIGS[MODEL][0])

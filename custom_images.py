@@ -1,4 +1,3 @@
-
 from tkinter import *
 from functools import partial
 import os
@@ -48,11 +47,16 @@ def segment_hand(frame, threshold=25):
 
 def store_gesture(gesture):
     gesture_name = gesture.get().upper()
-    path = r"C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\custom\train\\"+gesture_name
+    path = os.getcwd()+"\\"
+    path = r"gestures\custom\train"
+    path+="\\"+gesture_name
+    test_path = os.getcwd()+"\\"
+    test_path = r"gestures\custom\test"
+    test_path+="\\"+gesture_name
+    print(os.path.isdir(path),path,test_path)
     if not os.path.isdir(path):
         os.mkdir(path)
-        os.mkdir(
-            r"C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\custom\test\\"+gesture_name)
+        os.mkdir(test_path)
     else:
         print("GESTURES ALREADY EXIST")
         return
@@ -134,9 +138,9 @@ def store_gesture(gesture):
                     #cv2.imwrite(path+"\\" + str(num_imgs_taken+300) + '.jpg', thresholded)
                     cv2.imwrite(path+"\\" + str(num_imgs_taken) +
                                 '.jpg', thresholded)
-                    if num_imgs_taken < 40:
+                    '''if num_imgs_taken < 40:
                         cv2.imwrite(os.getcwd()+'\\gestures\\test\\'+gesture_name +
-                                    "\\" + str(num_imgs_taken) + '.jpg', thresholded)
+                                    "\\" + str(num_imgs_taken) + '.jpg', thresholded)'''
 
                 else:
                     break
@@ -169,25 +173,45 @@ def store_gesture(gesture):
     cv2.destroyAllWindows()
     cam.release()
     for i in range(0, 40):
-        shutil.copy(r"C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\custom\train\\"+element.upper()+"\\"+
-                    str(i)+".jpg", r"C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\custom\test\\"+element.upper()+"\\"+str(i)+".jpg")
+        shutil.copy(path+"\\"+str(i)+".jpg", test_path+"\\"+str(i)+".jpg")
     
-
-app = Tk()
-app.title("Gesture Capture")
-app.geometry('400x300')
-app.resizable(width=0, height=0)
-Header = Label(app, text='Please Enter The Gesture',
+def launch_capture():
+    app = Tk()
+    app.title("Gesture Capture")
+    app.geometry('400x300')
+    app.resizable(width=0, height=0)
+    Header = Label(app, text='Please Enter The Gesture',
                font=("Comic Sans Ms", 18))
-Header.place(x=60, y=50)
-gesture_label = Label(app, text='Gesture', font=("Comic Sans Ms", 14))
-gesture = StringVar()
-gesture_entry = Entry(app, textvariable=gesture, font=("Comic Sans Ms", 14))
+    Header.place(x=60, y=50)
+    gesture_label = Label(app, text='Gesture', font=("Comic Sans Ms", 14))
+    gesture = StringVar()
+    gesture_entry = Entry(app, textvariable=gesture, font=("Comic Sans Ms", 14))
+    gesture_label.place(x=45, y=150)
+    gesture_entry.place(x=130, y=150)
+    store_gesture_partial = partial(store_gesture, gesture)
+    button = Button(app, text='Start Capturing', width=29,
+                command=store_gesture_partial, font=("Comic Sans Ms", 14))
+    button.place(x=45, y=200)
 
-gesture_label.place(x=45, y=150)
-gesture_entry.place(x=130, y=150)
-store_gesture = partial(store_gesture, gesture)
-button = Button(app, text='Start Capturing', width=29,
+
+
+
+if __name__=="__main__":
+    app = Tk()
+    app.title("Gesture Capture")
+    app.geometry('400x300')
+    app.resizable(width=0, height=0)
+    Header = Label(app, text='Please Enter The Gesture',
+               font=("Comic Sans Ms", 18))
+    Header.place(x=60, y=50)
+    gesture_label = Label(app, text='Gesture', font=("Comic Sans Ms", 14))
+    gesture = StringVar()
+    gesture_entry = Entry(app, textvariable=gesture, font=("Comic Sans Ms", 14))
+
+    gesture_label.place(x=45, y=150)
+    gesture_entry.place(x=130, y=150)
+    store_gesture = partial(store_gesture, gesture)
+    button = Button(app, text='Start Capturing', width=29,
                 command=store_gesture, font=("Comic Sans Ms", 14))
-button.place(x=45, y=200)
-app.mainloop()
+    button.place(x=45, y=200)
+    app.mainloop()

@@ -2,22 +2,26 @@ from tkinter import *
 from functools import partial
 import os
 import cv2
+from django import conf
 import numpy as np
+import config
 
 
+MODEL = "ASL"
 
 def store_text(text):
     text_name = text.get().lower()
-    path=os.getcwd()+"\\ASL\\asl_alphabet_train\\asl_alphabet_train\\"
+    path=config.MODEL_CONFIGS[MODEL][1]
+    path+="\\"
     print(text_name)
     
     for i in text_name:
         if i == " ":
             l  = "space"
-            dir = path+'space'+'\\'+'space'+'1.jpg'
+            dir = path+'space'+'\\1.jpg'
         else:    
             l = i
-            dir = path+i.upper()+'\\'+i.upper()+'1.jpg'
+            dir = path+i.upper()+'\\1.jpg'
         image = cv2.imread(dir,0)
 
   
