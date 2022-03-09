@@ -6,7 +6,8 @@ import tensorflow as tf
 import os
 import config
 
-model = keras.models.load_model(config.MODEL_CONFIGS['CUSTOM_DATA'][0])
+MODEL = "CUSTOM_DATA"
+model = keras.models.load_model(config.MODEL_CONFIGS[MODEL][0])
 
 background = None
 accumulated_weight = 0.5
@@ -75,7 +76,7 @@ while True:
         cv2.putText(frame_copy, "FETCHING BACKGROUND...PLEASE WAIT", (80, 400), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,0,255), 2)
     
     else: 
-        classes = next(os.walk(config.MODEL_CONFIGS['CUSTOM_DATA'][1]))[1]  
+        classes = next(os.walk(config.MODEL_CONFIGS[MODEL][1]))[1]  
         index = 0
         word_dict ={}
 
