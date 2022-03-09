@@ -1,3 +1,4 @@
+import config
 import os
 from django import conf
 import tensorflow as tf
@@ -16,7 +17,6 @@ import cv2
 from keras.callbacks import ReduceLROnPlateau
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 warnings.simplefilter(action='ignore', category=FutureWarning)
-import config
 
 
 MODEL = "CUSTOM_DATA"

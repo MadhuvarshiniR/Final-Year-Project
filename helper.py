@@ -1,19 +1,20 @@
 import os
 import shutil
 
-letters = os.listdir(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train')
-print(os.getcwd(),letters)
+letters = os.listdir(
+    r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train')
+print(os.getcwd(), letters)
 
 for letter in letters:
-    path= r'C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\ASL\train'
+    path = r'C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\ASL\train'
     test_path = r'C:\Users\muhym\Desktop\GUI Main Project\Final-Year-Project\gestures\ASL\test'
     os.mkdir(path+"\\"+letter)
     os.mkdir(test_path+"\\"+letter)
     for i in range(0, 301):
-        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\"+
+        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\" +
                     str(i)+".jpg", path+"\\"+letter+"\\"+str(i)+".jpg")
     for i in range(0, 40):
-        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\"+
+        shutil.copy(r'C:\Users\muhym\Desktop\ASL\asl_alphabet_train\asl_alphabet_train\\'+letter+"\\" +
                     str(i)+".jpg", test_path+"\\"+letter+"\\"+str(i)+".jpg")
 
 

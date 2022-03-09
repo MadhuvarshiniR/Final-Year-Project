@@ -49,11 +49,11 @@ def store_gesture(gesture):
     gesture_name = gesture.get().upper()
     path = os.getcwd()+"\\"
     path = r"gestures\custom\train"
-    path+="\\"+gesture_name
+    path += "\\"+gesture_name
     test_path = os.getcwd()+"\\"
     test_path = r"gestures\custom\test"
-    test_path+="\\"+gesture_name
-    print(os.path.isdir(path),path,test_path)
+    test_path += "\\"+gesture_name
+    print(os.path.isdir(path), path, test_path)
     if not os.path.isdir(path):
         os.mkdir(path)
         os.mkdir(test_path)
@@ -174,44 +174,45 @@ def store_gesture(gesture):
     cam.release()
     for i in range(0, 40):
         shutil.copy(path+"\\"+str(i)+".jpg", test_path+"\\"+str(i)+".jpg")
-    
+
+
 def launch_capture():
     app = Tk()
     app.title("Gesture Capture")
     app.geometry('400x300')
     app.resizable(width=0, height=0)
     Header = Label(app, text='Please Enter The Gesture',
-               font=("Comic Sans Ms", 18))
+                   font=("Comic Sans Ms", 18))
     Header.place(x=60, y=50)
     gesture_label = Label(app, text='Gesture', font=("Comic Sans Ms", 14))
     gesture = StringVar()
-    gesture_entry = Entry(app, textvariable=gesture, font=("Comic Sans Ms", 14))
+    gesture_entry = Entry(app, textvariable=gesture,
+                          font=("Comic Sans Ms", 14))
     gesture_label.place(x=45, y=150)
     gesture_entry.place(x=130, y=150)
     store_gesture_partial = partial(store_gesture, gesture)
     button = Button(app, text='Start Capturing', width=29,
-                command=store_gesture_partial, font=("Comic Sans Ms", 14))
+                    command=store_gesture_partial, font=("Comic Sans Ms", 14))
     button.place(x=45, y=200)
 
 
-
-
-if __name__=="__main__":
+if __name__ == "__main__":
     app = Tk()
     app.title("Gesture Capture")
     app.geometry('400x300')
     app.resizable(width=0, height=0)
     Header = Label(app, text='Please Enter The Gesture',
-               font=("Comic Sans Ms", 18))
+                   font=("Comic Sans Ms", 18))
     Header.place(x=60, y=50)
     gesture_label = Label(app, text='Gesture', font=("Comic Sans Ms", 14))
     gesture = StringVar()
-    gesture_entry = Entry(app, textvariable=gesture, font=("Comic Sans Ms", 14))
+    gesture_entry = Entry(app, textvariable=gesture,
+                          font=("Comic Sans Ms", 14))
 
     gesture_label.place(x=45, y=150)
     gesture_entry.place(x=130, y=150)
     store_gesture = partial(store_gesture, gesture)
     button = Button(app, text='Start Capturing', width=29,
-                command=store_gesture, font=("Comic Sans Ms", 14))
+                    command=store_gesture, font=("Comic Sans Ms", 14))
     button.place(x=45, y=200)
     app.mainloop()
